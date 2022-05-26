@@ -23,13 +23,17 @@ class Cliente {
     }
 }
 
+let tituloH2= document.createElement("h2")
+tituloH2.innerText = ("Gracias por su compra!")
+document.body.appendChild(tituloH2)
+
+
 let nombre = prompt("Ingrese su nombre")
 let apellido = prompt("Ingrese su apellido")
-
 const cliente = new Cliente(nombre, apellido)
 
-
-// Array para agregar productos
+let titluloPagina = document.getElementById("titulo")
+titluloPagina.innerHTML = `Bienvenid@ a la Maja Indumentaria, ${nombre} ${apellido}`
 
 
 let producto = prompt("Ingrese el producto que desea comprar: REMERA, PANTALON, VESTIDO, o FIN para finalizar la compra")
@@ -133,8 +137,23 @@ if (prodConIva === "SI") {
     carrito.forEach((prod) => {
         console.log("El valor del producto con IVA es $" + (prod *= 1.21))
     })
-}else {
+} else {
     alert("Gracias por su compra!")
 }
 
 
+
+function mostrarCompra() {
+
+    let nombreProducto = document.getElementById("contenedor")
+    for (let i = 0; i < tipoProducto.length; i++) {
+        const ul = document.createElement("ul")
+        ul.innerHTML = `Producto ` + tipoProducto[i] + " $" + carrito[i]
+        contenedor.appendChild(ul)
+    }
+}
+mostrarCompra()
+
+let h4 = document.createElement("h4")
+h4.innerHTML = `Valor total de la compra $ ` + valorCarrito
+contenedor.appendChild(h4)
