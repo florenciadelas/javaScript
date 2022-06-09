@@ -10,7 +10,6 @@ let tipoProducto = []
 let suma = []
 
 
-
 // Objeto cliente
 
 class Cliente {
@@ -18,20 +17,22 @@ class Cliente {
     constructor(nombre, apellido) {
         this.nombre = nombre
         this.apellido = apellido
+        this.producto = producto
+        this.cant = cant
     }
 
     nombreCompleto() {
         return this.nombre + " " + this.apellido
     }
 }
-
-class Carrito {
-
-    constructor(producto, cant) {
-        this.producto = producto
-        this.cant = cant
-    }
-}
+let {
+    nombre,
+    apellido
+} = Cliente
+let {
+    producto,
+    cant
+} = Cliente
 
 const btnAgregar = document.getElementById("agregarAlCarrito")
 btnAgregar.addEventListener("click", () => {
@@ -61,33 +62,25 @@ btnAgregar.addEventListener("click", () => {
     }
 
     mostrarValor = () => {
-        if (producto.value == "REMERA") {
-            devolverResultado(remera, cantidad.value)
-        } else if (producto.value == "PANTALON") {
-            devolverResultado(pantalon, cantidad.value)
-        } else if (producto.value == "VESTIDO") {
-            devolverResultado(vestido, cantidad.value)
-        }
+        producto.value == "REMERA" && devolverResultado(remera, cantidad.value)
+        producto.value == "PANTALON" && devolverResultado(pantalon, cantidad.value)
+        producto.value == "VESTIDO" && devolverResultado(vestido, cantidad.value)
     }
-
     mostrarValor()
 
+    producto.value !== "0" && cant.value && mostrarCompra()
 
     function mostrarCompra() {
-        if (producto.value !== "0" && cant.value) {
+        carrito.push(resultado)
+        tipoProducto.push(producto)
 
-            carrito.push(resultado)
-            tipoProducto.push(producto)
-
-            let nombreProducto = document.getElementById("contenedor")
-            const ul = document.createElement("ul")
-            ul.innerHTML = `Producto ` + producto.value + " $" + resultado
-            contenedor.appendChild(ul)
-        }
+        let nombreProducto = document.getElementById("contenedor")
+        const ul = document.createElement("ul")
+        ul.innerHTML = `Producto ` + producto.value + " $" + resultado
+        contenedor.appendChild(ul)
     }
-    mostrarCompra()
 
-    let carro = new Carrito(producto.value, cant.value)
+    let carro = new Cliente(producto.value, cant.value)
     suma.push(carro)
     localStorage.setItem("carritos", JSON.stringify(suma))
 
@@ -121,6 +114,7 @@ btnFinalizar.addEventListener("click", () => {
         tituloH4.innerText = ("Gracias por su compra!")
         contenedor.appendChild(tituloH4)
     }
+
     carrito = []
     mostrarValorTotal()
     agradecer()
