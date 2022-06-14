@@ -1,4 +1,3 @@
-// Mostrar el valor el producto en pantalla
 
 let remera = 100
 let pantalon = 200
@@ -78,6 +77,15 @@ btnAgregar.addEventListener("click", () => {
         const ul = document.createElement("ul")
         ul.innerHTML = `Producto ` + producto.value + " $" + resultado
         contenedor.appendChild(ul)
+
+        Toastify({
+            text: `Agregaste el producto ${producto.value}`,
+            duration: 3000,
+            style: {
+                background: "#fafa79",
+                color: "black",
+            }
+        }).showToast()
     }
 
     let carro = new Cliente(producto.value, cant.value)
@@ -107,6 +115,7 @@ btnFinalizar.addEventListener("click", () => {
         let h4 = document.createElement("h4")
         h4.innerHTML = `Valor total de la compra $ ` + valorCarrito
         contenedor.appendChild(h4)
+        mostrarAlert()
     }
 
     function agradecer() {
@@ -115,9 +124,16 @@ btnFinalizar.addEventListener("click", () => {
         contenedor.appendChild(tituloH4)
     }
 
+    function mostrarAlert() {
+        Swal.fire({
+
+            title: "Felicitaciones!",
+            text: `Finalizaste tu compra :)`,
+            confirmButtonText: "Cerrar",
+        })
+    }
+
     carrito = []
     mostrarValorTotal()
     agradecer()
 })
-
-
