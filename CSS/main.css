@@ -18,7 +18,15 @@ ul li a {
 
 /*Contenido*/
 .centrar {
-  text-align: center; }
+  text-align: center;}
+  
+.listaPrecios{
+  margin: 10px;
+}
+
+#titulo{
+  color: #fafa79;
+}
 
 .estiloTitulo {
   justify-content: center;

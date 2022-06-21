@@ -24,14 +24,35 @@ class Cliente {
         return this.nombre + " " + this.apellido
     }
 }
-let {
-    nombre,
-    apellido
-} = Cliente
-let {
-    producto,
-    cant
-} = Cliente
+let {nombre, apellido, producto, cant} = Cliente
+
+let precios = document.getElementById("mostrarPrecios")
+precios.addEventListener("click", ()=>{
+    cargarLista()
+    mostrarPrecios.setAttribute("style", "display:none")
+})   
+
+function cargarLista(){
+    fetch("/listaPrecios/precios.js")
+.then((response) => response.json())
+.then((json) => mostrarLista(json))
+}
+
+function mostrarLista(lista){
+
+    let listaPrecio = document.getElementById("listaPrecios")
+
+    let tituloLista = document.createElement("h4")
+        tituloLista.innerText = ("Lista de precios")
+        listaPrecios.appendChild(tituloLista)
+
+    lista.forEach(listar => {
+        let {producto, precio} = listar
+        let objeto = document.createElement("h6")
+        objeto.innerText = `${producto} ${precio}`
+        listaPrecio.appendChild(objeto)
+    })
+}
 
 const btnAgregar = document.getElementById("agregarAlCarrito")
 btnAgregar.addEventListener("click", () => {
@@ -76,8 +97,7 @@ btnAgregar.addEventListener("click", () => {
         let nombreProducto = document.getElementById("contenedor")
         const ul = document.createElement("ul")
         ul.innerHTML = `Producto ` + producto.value + " $" + resultado
-        contenedor.appendChild(ul)
-
+        contenedor.append
         Toastify({
             text: `Agregaste el producto ${producto.value}`,
             duration: 3000,
@@ -119,8 +139,8 @@ btnFinalizar.addEventListener("click", () => {
     }
 
     function agradecer() {
-        let tituloH4 = document.createElement("h4")
-        tituloH4.innerText = ("Gracias por su compra!")
+        let tituloH4 = document.createElement("h5")
+        tituloH4.innerText = ("Gracias!")
         contenedor.appendChild(tituloH4)
     }
 
