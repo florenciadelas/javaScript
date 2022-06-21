@@ -77,7 +77,6 @@ btnAgregar.addEventListener("click", () => {
     let titluloPagina = document.getElementById("titulo")
     titluloPagina.innerHTML = `Bienvenid@ ${nombre.value} ${apellido.value}`
 
-
     let producto = document.getElementById("producto")
     localStorage.setItem("PRODUCTO", producto.value)
 
@@ -105,7 +104,7 @@ btnAgregar.addEventListener("click", () => {
         let nombreProducto = document.getElementById("contenedor")
         const ul = document.createElement("ul")
         ul.innerHTML = `Producto ` + producto.value + " $" + resultado
-        contenedor.append
+        contenedor.appendChild(ul)
         Toastify({
             text: `Agregaste el producto ${producto.value}`,
             duration: 3000,
