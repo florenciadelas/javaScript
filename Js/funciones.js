@@ -33,7 +33,7 @@ precios.addEventListener("click", ()=>{
 })   
 
 function cargarLista(){
-    fetch("/listaPrecios/precios.js")
+    fetch("./listaPrecios/precios.js")
 .then((response) => response.json())
 .then((json) => mostrarLista(json))
 }
