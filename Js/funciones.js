@@ -24,30 +24,38 @@ class Cliente {
         return this.nombre + " " + this.apellido
     }
 }
-let {nombre, apellido, producto, cant} = Cliente
+let {
+    nombre,
+    apellido,
+    producto,
+    cant
+} = Cliente
 
 let precios = document.getElementById("mostrarPrecios")
-precios.addEventListener("click", ()=>{
+precios.addEventListener("click", () => {
     cargarLista()
     mostrarPrecios.setAttribute("style", "display:none")
-})   
+})
 
-function cargarLista(){
-    fetch("./listaPrecios/precios.js")
-.then((response) => response.json())
-.then((json) => mostrarLista(json))
+function cargarLista() {
+    fetch("../listaPrecios/precios.js")
+        .then((response) => response.json())
+        .then((json) => mostrarLista(json))
 }
 
-function mostrarLista(lista){
+function mostrarLista(lista) {
 
     let listaPrecio = document.getElementById("listaPrecios")
 
     let tituloLista = document.createElement("h4")
-        tituloLista.innerText = ("Lista de precios")
-        listaPrecios.appendChild(tituloLista)
+    tituloLista.innerText = ("Lista de precios")
+    listaPrecios.appendChild(tituloLista)
 
     lista.forEach(listar => {
-        let {producto, precio} = listar
+        let {
+            producto,
+            precio
+        } = listar
         let objeto = document.createElement("h6")
         objeto.innerText = `${producto} ${precio}`
         listaPrecio.appendChild(objeto)
